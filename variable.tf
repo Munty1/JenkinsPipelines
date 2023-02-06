@@ -6,3 +6,5 @@ variable "gcp_zone" {
 
 variable "project" {
   default = "flowers-342123"
+}
+
