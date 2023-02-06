@@ -1,13 +1,11 @@
 provider "google" {
-  version = "3.5.0"
-  project = "flowers-342123"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  project = var.project
 }
 
 resource "google_compute_network" "vpc_network" {
   name                    = "my-custom-mode-network"
   auto_create_subnetworks = false
+  mtu                     = 1460
 }
 
 resource "google_compute_subnetwork" "default" {
@@ -18,14 +16,15 @@ resource "google_compute_subnetwork" "default" {
 }
 
 resource "google_compute_instance" "default" {
-  name         = "flask-vm"
+  name         = "test15"
   machine_type = "f1-micro"
-  zone         = "us-central1-c"
+  zone         = var.gcp_zone
   tags         = ["ssh"]
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      #image = "debian-cloud/debian-11"
+      image = "projects/flowers-342123/global/images/image-1"
     }
   }
 
