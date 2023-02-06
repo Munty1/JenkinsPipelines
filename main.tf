@@ -1,6 +1,5 @@
 provider "google" {
   version = "3.5.0"
- #access_token = "ya29.a0AVvZVsoXXSGQlW4WCd9nrzMRBn9AYVTgZAMpdJw5uVRMaDrVa0Meg1QLzDyiyH1vUDyckiYkAnoqm5zQ-QKNFzD2xsUFtbk3Irr55OihNJ1wQ71MhRUURk_1841GiaDRRA-bBsUuB9t8qQJiH1qRuz8KrkZ17aIMFz5u9rIaCgYKAeUSAQASFQGbdwaI2-z93EcqAChSImoeEWjYpw0174"
   project = "roses-344817"
   region  = "us-central1"
   zone    = "us-central1-c"
