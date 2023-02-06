@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+  environment {
+    CLOUDSDK_CORE_PROJECT='flowers-342123'
+    GCLOUD_CREDS=credentials('jenkins-sa-cred')
+  }
+  stages {
+    stage('test') {
+      steps {
+          sh '''
+            gcloud version
+            gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
+            gcloud compute zones list
+            gcloud compute instances create instance-2  \
+    --project=flowers-342123 \
+    --zone=us-central1-a \
+    --machine-type=e2-medium \
+    --network-interface=network-tier=PREMIUM,subnet=default \
+    --maintenance-policy=MIGRATE \
+    --provisioning-model=STANDARD \
+    --service-account=208585581363-compute@developer.gserviceaccount.com \
+    --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+    --create-disk=auto-delete=yes,boot=yes,device-name=instance-2,image=projects/debian-cloud/global/images/debian-11-bullseye-v20221206,mode=rw,size=10,type=projects/flowers-342123/zones/us-central1-a/diskTypes/pd-balanced \
+    --no-shielded-secure-boot \
+    --shielded-vtpm \
+    --shielded-integrity-monitoring \
+    --reservation-affinity=any
+          '''
+        }
+      }
+    }
+  }
