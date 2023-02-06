@@ -17,7 +17,6 @@ resource "google_compute_subnetwork" "default" {
   network       = google_compute_network.vpc_network.id
 }
 
-# Create a single Compute Engine instance
 resource "google_compute_instance" "default" {
   name         = "flask-vm"
   machine_type = "f1-micro"
@@ -30,14 +29,12 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  # Install Flask
   metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python3-pip rsync; pip install flask"
 
   network_interface {
     subnetwork = google_compute_subnetwork.default.id
 
     access_config {
-      # Include this section to give the VM an external IP address
     }
   }
 }
