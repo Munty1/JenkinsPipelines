@@ -1,6 +1,6 @@
 provider "google" {
   version = "3.5.0"
-  project = "roses-344817"
+  project = "flowers-342123"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
