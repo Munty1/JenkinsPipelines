@@ -1,6 +1,6 @@
 provider "google" {
   project = var.project
-  credentials = "https://github.com/Munty1/JenkinsPipelines/blob/main/jenkins-sa-key.json"
+
 }
 
 resource "google_compute_network" "vpc_network" {
