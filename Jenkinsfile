@@ -4,7 +4,11 @@ pipeline {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
     } 
    
-   agent  any
+   agent any
+   environment {
+        GCLOUDSDK_CORE_PROJECT='flowers-342123'
+        GCLOUD_CREDS=credentials('jenkins-sa-cred')
+    }
     stages {
         stage('checkout') {
             steps {
