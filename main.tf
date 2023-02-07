@@ -1,5 +1,5 @@
 provider "google" {
-  project = var.project
+  project = "flowers-342123"
 
 }
 
@@ -19,7 +19,7 @@ resource "google_compute_subnetwork" "default" {
 resource "google_compute_instance" "default" {
   name         = "test15"
   machine_type = "f1-micro"
-  zone         = var.gcp_zone
+  zone         = "us-central1-a"
   tags         = ["ssh"]
 
   boot_disk {
